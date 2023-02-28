@@ -6,7 +6,7 @@ import '../data/model/student.dart';
 import '../views/student_tile.dart';
 
 class StudentsPage extends StatelessWidget {
-  StudentsPage({
+  const StudentsPage({
     Key? key,
     required this.title,
   }) : super(key: key);
@@ -15,19 +15,48 @@ class StudentsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Student> students = context.watch<StudentListState>().students;
+    final List<Student> activeStudents = context.watch<StudentListState>().getActiveStudents();
 
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: ListView.builder(
-          itemCount: students.length,
-          itemBuilder: (context, index) => StudentTile(
-                id: students[index].id,
-                firstName: students[index].firstName,
-                lastName: students[index].lastName,
-                gpa: students[index].gpa,
-                avatarPath: students[index].avatarPath,
-                activist: students[index].isActivist,
-              )),
+    return DefaultTabController(
+      initialIndex: 1,
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(
+                icon: Icon(Icons.person),
+              ),
+              Tab(
+                icon: Icon(Icons.handyman),
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(children: [
+          ListView.builder(
+              itemCount: students.length,
+              itemBuilder: (context, index) => StudentTile(
+                    id: students[index].id,
+                    firstName: students[index].firstName,
+                    lastName: students[index].lastName,
+                    gpa: students[index].gpa,
+                    avatarPath: students[index].avatarPath,
+                    activist: students[index].isActivist,
+                  )),
+          ListView.builder(
+              itemCount: activeStudents.length,
+              itemBuilder: (context, index) => StudentTile(
+                    id: activeStudents[index].id,
+                    firstName: activeStudents[index].firstName,
+                    lastName: activeStudents[index].lastName,
+                    gpa: activeStudents[index].gpa,
+                    avatarPath: activeStudents[index].avatarPath,
+                    activist: activeStudents[index].isActivist,
+                  )),
+        ]),
+      ),
     );
   }
 }

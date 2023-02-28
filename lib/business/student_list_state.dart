@@ -15,4 +15,8 @@ class StudentListState with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  getActiveStudents() {
+    return students.where((student) => student.isActivist).toList();
+  }
 }
