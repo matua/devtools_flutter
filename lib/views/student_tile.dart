@@ -23,15 +23,15 @@ class StudentTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: SizedBox(
-        height: 100,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(avatarPath),
-            SizedBox(
-              width: 150,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(flex: 1, child: Image.asset(avatarPath)),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,10 @@ class StudentTile extends StatelessWidget {
                     )
                   ]),
             ),
-            Switch(
+          ),
+          Expanded(
+            flex: 1,
+            child: Switch(
               value: activist,
               activeColor: Colors.greenAccent,
               onChanged: (_) {
@@ -76,9 +79,9 @@ class StudentTile extends StatelessWidget {
                   Navigator.of(context).pop();
                 });
               },
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
