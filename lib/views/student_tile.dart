@@ -53,8 +53,28 @@ class StudentTile extends StatelessWidget {
             Switch(
               value: activist,
               activeColor: Colors.greenAccent,
-              onChanged: (bool value) {
+              onChanged: (_) {
                 context.read<StudentListState>().changeStudentActivism(id);
+                showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SizedBox(
+                      height: 200,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text('Student is now ${activist ? "not active" : "active"}'),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+                Future.delayed(const Duration(milliseconds: 1000), () {
+                  Navigator.of(context).pop();
+                });
               },
             )
           ],
