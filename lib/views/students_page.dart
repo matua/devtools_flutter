@@ -19,7 +19,7 @@ class StudentsPage extends StatelessWidget {
     final List<Student> activeStudents = context.watch<StudentListState>().getActiveStudents();
 
     // call the getAverageGpa() method to simulate a CPU-intensive operation
-    final double averageGpa = studentListState.getAverageGpa();
+    // final double averageGpa = studentListState.getAverageGpa();
 
     return DefaultTabController(
       initialIndex: 0,
