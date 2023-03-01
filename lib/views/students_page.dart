@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,13 +7,18 @@ import '../business/student_list_state.dart';
 import '../data/model/student.dart';
 import '../views/student_tile.dart';
 
-class StudentsPage extends StatelessWidget {
+class StudentsPage extends StatefulWidget {
   const StudentsPage({
     Key? key,
     required this.title,
   }) : super(key: key);
   final String title;
 
+  @override
+  State<StudentsPage> createState() => _StudentsPageState();
+}
+
+class _StudentsPageState extends State<StudentsPage> {
   @override
   Widget build(BuildContext context) {
     final StudentListState studentListState = context.watch<StudentListState>();
@@ -26,7 +33,7 @@ class StudentsPage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(widget.title),
           bottom: const TabBar(
             tabs: <Widget>[
               Tab(
