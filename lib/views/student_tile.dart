@@ -59,7 +59,6 @@ class StudentTile extends StatelessWidget {
               value: activist,
               activeColor: Colors.greenAccent,
               onChanged: (_) {
-                MyStream()._initializeStream();
                 context.read<StudentListState>().changeStudentActivism(id);
                 showModalBottomSheet<void>(
                   context: context,
@@ -87,41 +86,5 @@ class StudentTile extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class MyStream {
-  final _controller = StreamController<HeavyObject>.broadcast();
-
-  Stream<HeavyObject> get stream => _controller.stream;
-
-  MyStream() {
-    _initializeStream();
-  }
-
-  void _initializeStream() async {
-    for (int i = 0; i < 10000000; i++) {
-      // Simulate asynchronous data being added to the stream
-      await Future.delayed(const Duration(milliseconds: 1000));
-      HeavyObject heavyObject = HeavyObject(i);
-      heavyObject.computeHeavyOperation();
-      // Add the data to the streamadd
-      _controller.sink.add(heavyObject);
-    }
-
-    // Close the stream once all data has been added
-    // _controller.close();
-  }
-}
-
-class HeavyObject {
-  final int number;
-  final List<int> _data;
-
-  HeavyObject(this.number) : _data = List.generate(10000000, (i) => i);
-
-  int computeHeavyOperation() {
-    // Perform a heavy computation using the data
-    return _data.fold(0, (sum, value) => sum + value);
   }
 }
