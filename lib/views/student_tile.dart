@@ -29,7 +29,7 @@ class StudentTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(flex: 1, child: Image.asset(avatarPath)),
+          Expanded(flex: 1, child: Image.network("https://picsum.photos/id/$id/300/300")),
           Expanded(
             flex: 2,
             child: Padding(
