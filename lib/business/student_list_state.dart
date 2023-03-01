@@ -12,12 +12,6 @@ class StudentListState with ChangeNotifier {
     final studentIndex = _students.indexWhere((student) => student.id == id);
     if (studentIndex != -1) {
       _students[studentIndex] = _students[studentIndex].copyWith(isActivist: !_students[studentIndex].isActivist);
-      //
-      // // simulate a CPU-intensive operation by adding a for loop
-      // for (int i = 0; i < 10000000; i++) {
-      //   // do nothing
-      // }
-
       notifyListeners();
     }
   }

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,9 +22,6 @@ class _StudentsPageState extends State<StudentsPage> {
     final StudentListState studentListState = context.watch<StudentListState>();
     final List<Student> students = context.watch<StudentListState>().students;
     final List<Student> activeStudents = context.watch<StudentListState>().getActiveStudents();
-
-    // call the getAverageGpa() method to simulate a CPU-intensive operation
-    // final double averageGpa = studentListState.getAverageGpa();
 
     return DefaultTabController(
       initialIndex: 0,

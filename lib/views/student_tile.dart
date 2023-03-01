@@ -1,8 +1,8 @@
-import 'dart:async';
-
-import 'package:devtools_flutter/business/student_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../business/student_list_state.dart';
+import '../config/config.dart';
 
 class StudentTile extends StatelessWidget {
   const StudentTile({
@@ -29,7 +29,10 @@ class StudentTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(flex: 1, child: Image.network("https://picsum.photos/id/$id/300/300")),
+          Expanded(
+              flex: 1,
+              child:
+                  isNetworkEnabled ? Image.network("https://picsum.photos/id/$id/300/300") : Image.asset(avatarPath)),
           Expanded(
             flex: 2,
             child: Padding(
