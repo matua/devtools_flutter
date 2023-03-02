@@ -1,3 +1,4 @@
+import 'package:devtools_flutter/business/network_student_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +26,7 @@ class StudentTile extends StatelessWidget {
   Widget build(BuildContext context) {
     ImageProvider imageProvider;
     if (isNetworkEnabled) {
-      imageProvider = NetworkImage("https://picsum.photos/id/$id/300/300");
+      imageProvider = NetworkImage(avatarPath);
     } else {
       imageProvider = AssetImage(avatarPath);
     }
@@ -69,7 +70,9 @@ class StudentTile extends StatelessWidget {
               value: activist,
               activeColor: Colors.greenAccent,
               onChanged: (_) {
-                context.read<AssetsStudentListState>().changeStudentActivism(id);
+                isNetworkEnabled
+                    ? context.read<NetworkStudentListState>().changeStudentActivism(id)
+                    : context.read<AssetsStudentListState>().changeStudentActivism(id);
                 showModalBottomSheet<void>(
                   context: context,
                   builder: (BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:devtools_flutter/data/students_list.dart';
+import 'package:devtools_flutter/data/assets_students_list.dart';
 import 'package:flutter/material.dart';
 
 import '../data/model/student.dart';
