@@ -1,4 +1,4 @@
-import 'package:devtools_flutter/business/student_list_state.dart';
+import 'package:devtools_flutter/business/assets_student_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<StudentListState>(
-      create: (_) => StudentListState(),
+    return ChangeNotifierProvider<AssetsStudentListState>(
+      create: (_) => AssetsStudentListState(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

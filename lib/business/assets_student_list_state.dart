@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../data/model/student.dart';
 
-class StudentListState with ChangeNotifier {
-  final List<Student> _students = studentsList;
+class AssetsStudentListState with ChangeNotifier {
+  final List<Student> _students = assetsStudentList;
 
   List<Student> get students => _students;
 

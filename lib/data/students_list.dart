@@ -1,6 +1,6 @@
 import 'model/student.dart';
 
-List<Student> studentsList = [
+List<Student> assetsStudentList = [
   Student(
     id: 1,
     avatarPath: "assets/images/4136036.png",

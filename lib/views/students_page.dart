@@ -1,9 +1,11 @@
+import 'package:devtools_flutter/business/network_student_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../business/student_list_state.dart';
+import '../business/assets_student_list_state.dart';
 import '../data/model/student.dart';
 import '../views/student_tile.dart';
+import '../config/config.dart';
 
 class StudentsPage extends StatefulWidget {
   const StudentsPage({
@@ -17,11 +19,18 @@ class StudentsPage extends StatefulWidget {
 }
 
 class _StudentsPageState extends State<StudentsPage> {
+  List<Student> students = [];
+  List<Student> activeStudents = [];
+
   @override
   Widget build(BuildContext context) {
-    final StudentListState studentListState = context.watch<StudentListState>();
-    final List<Student> students = context.watch<StudentListState>().students;
-    final List<Student> activeStudents = context.watch<StudentListState>().getActiveStudents();
+    if (isNetworkEnabled) {
+      students = context.watch<NetworkStudentListState>().students;
+      activeStudents = context.watch<NetworkStudentListState>().getActiveStudents();
+    } else {
+      students = context.watch<AssetsStudentListState>().students;
+      activeStudents = context.watch<AssetsStudentListState>().getActiveStudents();
+    }
 
     return DefaultTabController(
       initialIndex: 0,

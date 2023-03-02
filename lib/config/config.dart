@@ -1,1 +1,1 @@
-const bool isNetworkEnabled = false;
+const bool isNetworkEnabled = true;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../business/student_list_state.dart';
+import '../business/assets_student_list_state.dart';
 import '../config/config.dart';
 
 class StudentTile extends StatelessWidget {
@@ -23,6 +23,13 @@ class StudentTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ImageProvider imageProvider;
+    if (isNetworkEnabled) {
+      imageProvider = NetworkImage("https://picsum.photos/id/$id/300/300");
+    } else {
+      imageProvider = AssetImage(avatarPath);
+    }
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -30,9 +37,9 @@ class StudentTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-              flex: 1,
-              child:
-                  isNetworkEnabled ? Image.network("https://picsum.photos/id/$id/300/300") : Image.asset(avatarPath)),
+            flex: 1,
+            child: Image(image: imageProvider),
+          ),
           Expanded(
             flex: 2,
             child: Padding(
@@ -62,7 +69,7 @@ class StudentTile extends StatelessWidget {
               value: activist,
               activeColor: Colors.greenAccent,
               onChanged: (_) {
-                context.read<StudentListState>().changeStudentActivism(id);
+                context.read<AssetsStudentListState>().changeStudentActivism(id);
                 showModalBottomSheet<void>(
                   context: context,
                   builder: (BuildContext context) {
