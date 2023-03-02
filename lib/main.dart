@@ -2,6 +2,7 @@ import 'package:devtools_flutter/business/assets_student_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'business/network_student_list_state.dart';
 import 'views/students_page.dart';
 
 void main() {
@@ -13,9 +14,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<AssetsStudentListState>(
-      create: (_) => AssetsStudentListState(),
-      child: MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AssetsStudentListState>(
+          create: (_) => AssetsStudentListState(),
+        ),
+        ChangeNotifierProvider<NetworkStudentListState>(
+          create: (_) => NetworkStudentListState(),
+        ),
+      ],
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         home: StudentsPage(
